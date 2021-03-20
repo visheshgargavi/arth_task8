@@ -17,6 +17,11 @@ os.system('aws configure')
 def key_pair():
 	key = input('Enter key name you want to create')
 	os.system('aws ec2 create-key-pair --key-name {}'.format(key))
+	
+def key_pair():
+		key = input('Enter key name you want to create: ')
+		os.system('aws ec2 create-key-pair --key-name {} --query "KeyMaterial" --output text > {}.pem '.format(key,key))
+		os.system('winscp.com /keygen {}.pem /output={}.ppk'.format(key,key))
 
 def ec2():
 	while True:
